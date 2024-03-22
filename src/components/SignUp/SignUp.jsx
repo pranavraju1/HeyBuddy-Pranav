@@ -5,10 +5,14 @@ import Modal from "react-bootstrap/Modal";
 import CreateAccount from "../CreateAccount/CreateAccount";
 import { Button } from "react-bootstrap";
 
-
 const SignUp = () => {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
   return (
     <div className="signup-container">
       <Modal
@@ -16,12 +20,19 @@ const SignUp = () => {
         onHide={() => setShow(false)}
         aria-labelledby="example-custom-modal-styling-title"
       >
-        <Modal.Body >
-        <CreateAccount/>
+        <Modal.Body>
+          <CreateAccount />
         </Modal.Body>
       </Modal>
-  
-      <div className="poster"></div>
+
+      <div className="poster">
+        {!imageLoaded && <h1>Loading...</h1>}
+        <img
+          src="poster1.png"
+          onLoad={handleImageLoad}
+          style={{ display: imageLoaded ? "block" : "none" }}
+        />
+      </div>
       <div className="signup">
         <img className="twitter-logo" src="twitter-logo.png" alt="" />
         <p className="happening">Happening now</p>
@@ -43,7 +54,11 @@ const SignUp = () => {
               <div className="signup-component-text">Sign up with Apple</div>
             </div>
           </Button>
-          <Button variant="light" className="signup-component" onClick={() => setShow(true)}>
+          <Button
+            variant="light"
+            className="signup-component"
+            onClick={() => setShow(true)}
+          >
             <div style={{ display: "flex", gap: "5px" }}>
               <div className="signup-component-text">
                 Sign up with phone or email
