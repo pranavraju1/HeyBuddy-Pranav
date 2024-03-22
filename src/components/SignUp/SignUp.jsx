@@ -26,7 +26,7 @@ const SignUp = () => {
       </Modal>
 
       <div className="poster">
-        {!imageLoaded && <h1>Loading...</h1>}
+        {!imageLoaded && <div className="loader"></div>}
         <img
           src="poster1.png"
           onLoad={handleImageLoad}
